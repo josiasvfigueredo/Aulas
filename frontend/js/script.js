@@ -87,8 +87,12 @@ function question05() {
    * Dica 03: pesquise por Set em JavaScript e faça a re-conversão
    * para array com Array.from
    */
-  const allIngredients = recipes.map(recipe => recipe.ingredients.flat());
-  return [...new Set(allIngredients)]
+  const allIngredients = recipes.map(recipe => recipe.ingredients)
+  const flattedIngredients = allIngredients.flat(2);
+  const joinedIngredients = flattedIngredients.join(', '); 
+  const convertedIngredients = Array.from(joinedIngredients.split(','));
+  const distinctIngredioents = [...new Set(convertedIngredients) ];
+  return distinctIngredioents;
 }
 
 function question06() {
