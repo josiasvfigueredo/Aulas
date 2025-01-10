@@ -1,4 +1,5 @@
 let recipes = [];
+let prices = [];
 
 const moneyFormatter = Intl.NumberFormat('pt-BR', {
   style: 'currency',
@@ -9,6 +10,7 @@ async function start() {
   const resources = await fetch('/backend/recipes.json');
   const json = await resources.json();
   recipes = json.recipes;
+  prices = recipes.map(prices => prices.price);
 
   const answers = [];
 
@@ -47,7 +49,9 @@ function question02() {
   /**
    * Questão 02: Qual é a média de preços das receitas?
    */
-  return 0;
+  const sum = prices.reduce((acum, price) => acum + price, 0);
+    const medium = sum / prices.length;
+    return moneyFormatter.format(medium.toFixed(2));
 }
 
 function question03() {
@@ -56,7 +60,8 @@ function question03() {
    * Dica 01: formate o número obtido com o moneyFormatter, declarado
    * no início deste arquivo
    */
-  return 0;
+   const pricey = prices.reduce((higher, actual) => {return (actual > higher? actual : higher); }, 0);
+    return moneyFormatter.format(pricey.toFixed(2));
 }
 
 function question04() {
@@ -64,7 +69,10 @@ function question04() {
    * Questão 04: Qual é a receita que possui mais ingredientes? Mostre também a
    * quantidade de ingredientes desta receita
    */
-  return 0;
+  const recipesWithMostIngredients = recipes.reduce((mostIngredients, actualRecipe) => {
+    return actualRecipe.ingredients.length > mostIngredients.ingredients.length ? actualRecipe : mostIngredients;
+  })
+  return `${recipesWithMostIngredients.title} possui ${recipesWithMostIngredients.ingredients.length} ingredientes.`;
 }
 
 function question05() {
