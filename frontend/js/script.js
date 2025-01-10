@@ -70,8 +70,11 @@ function question04() {
    * quantidade de ingredientes desta receita
    */
   const recipesWithMostIngredients = recipes.reduce((mostIngredients, actualRecipe) => {
+    if (!mostIngredients) {
+      return actualRecipe;
+    }
     return actualRecipe.ingredients.length > mostIngredients.ingredients.length ? actualRecipe : mostIngredients;
-  })
+  }, null);
   return `${recipesWithMostIngredients.title} possui ${recipesWithMostIngredients.ingredients.length} ingredientes.`;
 }
 
@@ -84,7 +87,8 @@ function question05() {
    * Dica 03: pesquise por Set em JavaScript e faça a re-conversão
    * para array com Array.from
    */
-  return 0;
+  const allIngredients = recipes.map(recipe => recipe.ingredients.flat());
+  return [...new Set(allIngredients)]
 }
 
 function question06() {
