@@ -152,7 +152,14 @@ function question09() {
    * Questão 09: Um determinado cliente quer comprar 2 itens de cada receita
    * que contenha "calabresa" com ingrediente. Quanto ele vai pagar?
    */
-  return 0;
+  let total = 0;
+  recipes.forEach(recipeIngredients => {
+    if (recipeIngredients.ingredients.includes('calabresa')) {
+      total += recipeIngredients.price * 2
+      counter++;
+    }
+  })
+  return `O total de ${counter} pedidos contendo calabresa é: ${moneyFormatter.format(total.toFixed(2))}`;
 }
 
 function question10() {
