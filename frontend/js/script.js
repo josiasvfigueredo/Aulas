@@ -108,12 +108,15 @@ function question06() {
    * Dica 05: pesquise pelo método array.splice
    */
   const common = [];
+  const errorMsg = []
   allIngredients[0].forEach(ingredient => {
     if (allIngredients.every(recipeIngredients => recipeIngredients.includes(ingredient))) {
     common.push(ingredient);
-  }
+    } else {
+      errorMsg.push('As receitas não contêm um ingrediente em comum.')
+    }
 })
-  return common;
+  return common.length === 1 ? `O ingrediente em comum para todas as receitas é o/a: ${common}` : `Erro: ${errorMsg}`;
 }
 
 function question07() {
@@ -121,7 +124,13 @@ function question07() {
    * Questão 07: Quantas receitas possuem "uva" como ingrediente?
    * Dica 01: pesquise pelo método array.includes
    */
-  return 0;
+  let counter = 0;
+  allIngredients.forEach(recipeIngredients => {
+    if (recipeIngredients.includes('uva')) {
+      counter++;
+    }
+  })
+  return `${counter} receitas possuem "uva" como ingrediente.`;
 }
 
 function question08() {
