@@ -167,7 +167,12 @@ function question10() {
    * Questão 10: Qual seria o faturamento bruto mensal se fossem vendidos,
    * durante um mês, 3 itens de cada receita?
    */
-  return 0;
+  const diasMes = 30
+  let brutoMensal = 0;
+  recipes.forEach(recipeIngredients => {
+    brutoMensal += (recipeIngredients.price * 3) * diasMes
+  })
+  return `O faturamento bruto mensal vendendo 3 items de cada receita durante 1 mês é: ${moneyFormatter.format(brutoMensal.toFixed(2))}`;
 }
 
 start();
