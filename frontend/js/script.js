@@ -1,6 +1,7 @@
 let recipes = [];
 let prices = [];
-
+let counter = 0;
+ 
 const moneyFormatter = Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
@@ -116,7 +117,7 @@ function question06() {
       errorMsg.push('As receitas não contêm um ingrediente em comum.')
     }
 })
-  return common.length === 1 ? `O ingrediente em comum para todas as receitas é o/a: ${common}` : `Erro: ${errorMsg}`;
+  return common.length === 1 ? `O ingrediente em comum para todas as receitas é o/a: "${common}"` : `Erro: ${errorMsg}`;
 }
 
 function question07() {
@@ -124,7 +125,7 @@ function question07() {
    * Questão 07: Quantas receitas possuem "uva" como ingrediente?
    * Dica 01: pesquise pelo método array.includes
    */
-  let counter = 0;
+
   allIngredients.forEach(recipeIngredients => {
     if (recipeIngredients.includes('uva')) {
       counter++;
@@ -138,7 +139,12 @@ function question08() {
    * Questão 08: Quantas receitas possuem "abóbora" e "aveia" como ingredientes?
    * Dica 01: pesquise pelo método array.includes
    */
-  return 0;
+  allIngredients.forEach(recipeIngredients => {
+    if (recipeIngredients.includes('abóbora') && recipeIngredients.includes('aveia')) {
+      counter++;
+    }
+  })
+  return `${counter} receitas possuem "abóbora" e "aveia" como ingrediente.`;
 }
 
 function question09() {
