@@ -101,10 +101,13 @@ function question06() {
    * Em caso afirmativo, informe-o(os).
    * Dica 01: reaproveite funções já implementadas
    * Dica 02: utilize array.every
-   * Dica 03: utilize arrey.forEach
+   * Dica 03: utilize array.forEach
    * Dica 04: pesquise pelo método array.includes
-   * Dica 05: pesquise pelo método array.split
+   * Dica 05: pesquise pelo método array.splice
    */
+  //foreach
+  //every inside foreach 
+  //includes inside every
   return 0;
 }
 
