@@ -6,12 +6,15 @@ const moneyFormatter = Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 });
 
+let allIngredients = []
+
 async function start() {
   const resources = await fetch('/backend/recipes.json');
   const json = await resources.json();
   recipes = json.recipes;
   prices = recipes.map(prices => prices.price);
-
+  allIngredients = recipes.map(recipe => recipe.ingredients)
+  
   const answers = [];
 
   answers.push(question01());
@@ -28,7 +31,7 @@ async function start() {
   for (const [index, answer] of answers.entries()) {
     const style =
       index % 2 === 0
-        ? 'backgroundColor: black; color: white'
+        ? 'backgroundColor: black; color: green'
         : 'backgroundColor: black; color: orange';
 
     console.log(
@@ -87,7 +90,6 @@ function question05() {
    * Dica 03: pesquise por Set em JavaScript e faça a re-conversão
    * para array com Array.from
    */
-  const allIngredients = recipes.map(recipe => recipe.ingredients)
   const flattedIngredients = allIngredients.flat(2);
   const joinedIngredients = flattedIngredients.join(', '); 
   const convertedIngredients = Array.from(joinedIngredients.split(','));
@@ -105,10 +107,13 @@ function question06() {
    * Dica 04: pesquise pelo método array.includes
    * Dica 05: pesquise pelo método array.splice
    */
-  //foreach
-  //every inside foreach 
-  //includes inside every
-  return 0;
+  const common = [];
+  allIngredients[0].forEach(ingredient => {
+    if (allIngredients.every(recipeIngredients => recipeIngredients.includes(ingredient))) {
+    common.push(ingredient);
+  }
+})
+  return common;
 }
 
 function question07() {
