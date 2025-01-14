@@ -33,7 +33,7 @@ async function start() {
     const style =
       index % 2 === 0
         ? 'backgroundColor: black; color: green'
-        : 'backgroundColor: black; color: orange';
+        : 'backgroundColor: black; color: blue';
 
     console.log(
       `%c Questão ${(index + 1).toString().padStart(2, '0')}: ${answer}`,
@@ -46,7 +46,7 @@ function question01() {
   /**
    * Questão 01: Quantas receitas existem ao todo?
    */
-  return recipes.length;
+  return `Há ${recipes.length} receitas ao todo.`;
 }
 
 function question02() {
@@ -55,7 +55,7 @@ function question02() {
    */
   const sum = prices.reduce((acum, price) => acum + price, 0);
     const medium = sum / prices.length;
-    return moneyFormatter.format(medium.toFixed(2));
+    return `À média de preços das receitas é de: ${moneyFormatter.format(medium.toFixed(2))}`;
 }
 
 function question03() {
@@ -64,8 +64,10 @@ function question03() {
    * Dica 01: formate o número obtido com o moneyFormatter, declarado
    * no início deste arquivo
    */
-   const pricey = prices.reduce((higher, actual) => {return (actual > higher? actual : higher); }, 0);
-    return moneyFormatter.format(pricey.toFixed(2));
+  const expensive = recipes.reduce((expensive, actualRecipe) => {
+    return actualRecipe.price > expensive.price ? actualRecipe : expensive;
+  }, { title: '', price: 0 });
+  return `A receita mais cara é a "${expensive.title}" que custa ${moneyFormatter.format(expensive.price.toFixed(2))}`;
 }
 
 function question04() {
@@ -79,7 +81,7 @@ function question04() {
     }
     return actualRecipe.ingredients.length > mostIngredients.ingredients.length ? actualRecipe : mostIngredients;
   }, null);
-  return `${recipesWithMostIngredients.title} possui ${recipesWithMostIngredients.ingredients.length} ingredientes.`;
+  return `A receita com mais ingredientes é a "${recipesWithMostIngredients.title}", que possui ${recipesWithMostIngredients.ingredients.length} ingredientes.`;
 }
 
 function question05() {
@@ -95,7 +97,7 @@ function question05() {
   const joinedIngredients = flattedIngredients.join(', '); 
   const convertedIngredients = Array.from(joinedIngredients.split(','));
   const distinctIngredioents = [...new Set(convertedIngredients) ];
-  return distinctIngredioents;
+  return `Os ingredientes distintos entre as receitas são: ${distinctIngredioents}`;
 }
 
 function question06() {
